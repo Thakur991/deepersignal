@@ -1,0 +1,35 @@
+<div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center" *ngIf="users">
+	<mat-card class="box" *ngFor="let user of userInfo">
+	  <mat-card-header>
+	   <mat-card-title>{{user.name}}</mat-card-title>
+	  </mat-card-header>
+		   <img mat-card-image src="{{user.image_url}}">
+	  <form class="example-form">
+	     <button mat-stroked-button color="primary" class="btn-block" (click)="getGraphData(user)">Reports</button>
+	  </form>
+	</mat-card>
+</div>
+
+
+
+<!-- graph code starts -->
+<div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center" *ngIf="graph">
+	<mat-card class="box" *ngFor="let user of userInfo">
+	  <mat-card-header>
+	   <mat-card-title>{{user.name}}</mat-card-title>
+	  </mat-card-header>
+	    <div style="display: block;">
+			  <canvas baseChart 
+			    [datasets]="barChartData"
+			    [labels]="barChartLabels"
+			    [options]="barChartOptions"
+			    [plugins]="barChartPlugins"
+			    [legend]="barChartLegend"
+			    [chartType]="barChartType">
+			  </canvas>
+		</div>
+	  <form class="example-form">
+	  	<button mat-stroked-button color="primary" class="btn-block" (click)="getUser(user)">Go To User</button>
+	  </form>
+	</mat-card>
+</div>
